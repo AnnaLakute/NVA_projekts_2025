@@ -1,16 +1,79 @@
+/*main */
+
+main {
+  margin-left:200px;
+  padding-bottom: 250px;
+}
+/*navigācijas stils*/
+.topnav {
+  background-color: #888888;  
+  margin-top:0px;
+  margin-left:150px;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  width: 100%;
+  top: 0; /* Stay at the top */
+  left: 0;
+  }
+
+.topnav a{
+  flex:1;
+  display:flex;
+  justify-content: space-around;
+  text-decoration: none;
+  color: #f2f2f2;
+}
+
+.topnav a:hover{
+  background-color:#dddddd;
+  color: black;
+}
+
+/* The side navigation menu */
+.sidebar {
+  overflow: hidden;
+  height: 100%; /* 100% Full-height */
+  width: 150px; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+ 
+  z-index: 0; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+    border-style: dotted;
+  
+  background-color: #888888; /* Black*/
+  padding-top: 60px; /* Place content 60px from the top */
+}
+
+.sidebar a:hover{
+
+  text-decoration: none;
+  background-color:#dddddd;
+  border: 1px;
+  }
 /*Lapas krāsa*/
 body {
   background-color: #459be8;
 }
+
 p {
   background-color: red;
   text-align: center;
 }
+
+
 /*klase centrēt lietas*/
 .center {
   margin-left: auto;
   margin-right: auto;
 }
+
+footer {
+  text-align: center;
+  }
+
+
 /* Tabulas formatejums*/
 table, th, td {
   border: 1px solid;
@@ -49,4 +112,30 @@ li ol > li:before {
 /*input lauka value teksta krāsa*/
 input, select, textarea{
     color: grey;
+}
+
+/*teksta bloka izskatiņš*/
+aside {
+  width: 30%;
+  padding-left: 15px;
+  margin-left: 15px;
+  float: right;
+  font-style: italic;
+  background-color: lightgray;
+}
+
+#tabula {
+  background-color:gold;
+}
+
+#saturs{
+   background-color: lightblue;
+}
+
+#saturs img{
+  border-radius:38px; 
+}
+
+#tabula tr:nth-child(even){
+  background-color:pink;
 }
