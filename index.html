@@ -9,6 +9,7 @@
       href="https://cdn.glitch.global/9854f0fd-919d-42f8-bc98-ee5fdb1ef95c/favicon.ico?v=1743781732383"
     />
     <link rel="stylesheet" href="stils.css" />
+    <script src="scripts.js"></script>
   </head>
 
   <body>
@@ -47,7 +48,7 @@
           Ievadiet pieslēgšanās informāciju<br /><br />
           Lietotājs<input type="text" /><br /><br />
           Parole <input type="password" /> <br /><br />
-          <input type="submit" value="Iesniegt" /> <br /><br />
+          <input type="submit" value="Iesniegt" /> <br />
         </p>
       </aside>
 
@@ -88,8 +89,8 @@
         Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section
         1.10.32.
       </section>
-<p>   </p>
-      
+      <p></p>
+
       <table id="tabula">
         <caption>
           Tabula ko ievietot
@@ -140,7 +141,7 @@
         </ol>
       </ol>
       <p></p>
-<br>
+      <br />
       <ul>
         Nesakārtots saraksts
         <li>ffff</li>
@@ -149,67 +150,91 @@
       </ul>
 
       <section>Tas ir reference uz tekstu kaut kur citur</section>
-      
-      <br>
+
       <br />
-      <section id="canvas">
-        <section id="zimejums" width="500" height="400">
-          <button onclick="taisnsturis">Taisnstūris</button>
-        </section>
+      <section id="aprekins">
+        <label for="vards">Ievadi savu vārdu <space> </space> <input type="text" id="vards" /> </label> <br><br>
+      <label for="pirma_vertiba">Ievadi pirmo vērtību "x" <space> </space> <input type="number" id="x" /> </label> <br><br>
+      <label for="otra_vertiba">Ievadi otra vērtību "y"<space> </space> <input type="number" id="y" /> </label><br><br>
+     <button onclick="aprekins()" class="btn btn-warning">Saskaitīšana</button>
+        <button onclick="atnemsana()" class="btn btn-warning">Atņemšana</button>
+        <button onclick="reizinasana()" class="btn btn-warning">Reizināšana</button>
+        <button onclick="dalisana()" class="btn btn-warning">Dalīšana</button>
+        
+      <p id="rezultats">
+        Šeit būs rezultāts
+        </p>  
+      
       </section>
+      
+    
+      
+      <br />
 
       <h2>Trīs div kolonnas</h2>
 
       <div class="row">
         <div class="column" style="background-color: #aaa">
           <br />
-          <h2>What is Lorem Ipsum?   </h2>
-       <p>
-         Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-          </p> 
-
+          <h2>What is Lorem Ipsum?</h2>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+          </p>
         </div>
         <div class="column" style="background-color: #bbb">
           <br />
           <h2>Why do we use it?</h2>
-        <p>  
-                    It is a long established fact that a reader will be distracted by the
-        readable content of a page when looking at its layout. The point of
-        using Lorem Ipsum is that it has a more-or-less normal distribution of
-        letters, as opposed to using 'Content here, content here', making it
-        look like readable English. Many desktop publishing packages and web
-        page editors now use Lorem Ipsum as their default model text, and a
-        search for 'lorem ipsum' will uncover many web sites still in their
-        infancy. Various versions have evolved over the years, sometimes by
-        accident, sometimes on purpose (injected humour and the like).
+          <p>
+            It is a long established fact that a reader will be distracted by
+            the readable content of a page when looking at its layout. The point
+            of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content
+            here', making it look like readable English. Many desktop publishing
+            packages and web page editors now use Lorem Ipsum as their default
+            model text, and a search for 'lorem ipsum' will uncover many web
+            sites still in their infancy. Various versions have evolved over the
+            years, sometimes by accident, sometimes on purpose (injected humour
+            and the like).
           </p>
         </div>
         <div class="column" style="background-color: #ccc">
           <h2>Where does it come from?</h2>
-      <p>
-        
-           Contrary to popular belief, Lorem Ipsum is not simply random text. It
-        has roots in a piece of classical Latin literature from 45 BC, making it
-        over 2000 years old. Richard McClintock, a Latin professor at
-        Hampden-Sydney College in Virginia, looked up one of the more obscure
-        Latin words, consectetur, from a Lorem Ipsum passage, and going through
-        the cites of the word in classical literature, discovered the
-        undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33
-        of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by
-        Cicero, written in 45 BC. This book is a treatise on the theory of
-        ethics, very popular during the Renaissance. The first line of Lorem
-        Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section
-        1.10.32. </p>
+          <p>
+            Contrary to popular belief, Lorem Ipsum is not simply random text.
+            It has roots in a piece of classical Latin literature from 45 BC,
+            making it over 2000 years old. Richard McClintock, a Latin professor
+            at Hampden-Sydney College in Virginia, looked up one of the more
+            obscure Latin words, consectetur, from a Lorem Ipsum passage, and
+            going through the cites of the word in classical literature,
+            discovered the undoubtable source. Lorem Ipsum comes from sections
+            1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
+            of Good and Evil) by Cicero, written in 45 BC. This book is a
+            treatise on the theory of ethics, very popular during the
+            Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
+            amet..", comes from a line in section 1.10.32.
+          </p>
         </div>
       </div>
+      <br /><br />
+
+      <section id="canvas">
+        <canvas id="zimejums" width="500" height="400"></canvas>
+
+        <button onclick="taisnsturis()">Taisnstūris</button>
+        <button onclick="aplis()" class="btn btn-warning">Aplis</button>
+        <button onclick="teksts()" class="btn btn-warning">Teksts</button>
+        <button onclick="linija()" class="btn btn-warning">Līnija</button>
+
+        <button onclick="clearall()" class="btn btn-warning">Notīrīt</button>
+      </section>
     </main>
 
     <footer>
