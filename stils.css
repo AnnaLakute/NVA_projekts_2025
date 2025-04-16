@@ -1,67 +1,61 @@
-/*main */
-
+/*main*/
 main {
-  margin-left:200px;
+  margin-left: 200px;
   padding-bottom: 250px;
 }
+
 /*navigācijas stils*/
 .topnav {
-  background-color: #888888;  
-  margin-top:0px;
-  margin-left:150px;
+  background-color: #888888;
   display: flex;
-  justify-content: space-around;
   position: fixed;
   width: 100%;
-  top: 0; /* Stay at the top */
   left: 0;
-  }
-
-.topnav a{
-  flex:1;
-  display:flex;
-  justify-content: space-around;
+  top: 0;
+  padding-left: 200px;
+}
+.topnav a {
+  flex: 0.1;
   text-decoration: none;
   color: #f2f2f2;
 }
-
-.topnav a:hover{
-  background-color:#dddddd;
+.topnav a:hover {
+  background-color: #dddddd;
+  color: black;
+}
+/* The side navigation menu */
+/*no lekcijas*/
+.sidebar {
+  height: 100%;
+  width: 150px;
+  left: 0;
+  top: 0;
+  position: fixed;
+  background-color: #888888;
+  padding-top: 30px;
+  margin-left: 0px;
+}
+.sidebar a {
+  flex: 0.1;
+  display: flex;
+  text-decoration: none;
+  color: #f2f2f2;
+}
+.sidebar a:hover {
+  background-color: #dddddd;
   color: black;
 }
 
-/* The side navigation menu */
-.sidebar {
-  overflow: hidden;
-  height: 100%; /* 100% Full-height */
-  width: 150px; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
- 
-  z-index: 0; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-    border-style: dotted;
-  
-  background-color: #888888; /* Black*/
-  padding-top: 60px; /* Place content 60px from the top */
-}
-
-.sidebar a:hover{
-
-  text-decoration: none;
-  background-color:#dddddd;
-  border: 1px;
-  }
-/*Lapas krāsa*/
-body {
-  background-color: #459be8;
-}
-
-p {
-  background-color: red;
+/*teksta bloka izskatiņš*/
+aside {
+  width: 15%;
+  padding-left: 30px;
+  margin-left: 15px;
+  float: right;
+  font-style: bold;
   text-align: center;
+  background-color: lightgray;
 }
-
 
 /*klase centrēt lietas*/
 .center {
@@ -71,14 +65,18 @@ p {
 
 footer {
   text-align: center;
-  }
+}
 
+#saturs {
+  background-color: lightblue;
+}
 
-/* Tabulas formatejums*/
-table, th, td {
-  border: 1px solid;
-  border-color: #96D4D4;
-  border-collapse: collapse;
+img {
+  border-radius: 50px;
+}
+
+#raksts {
+  text-align: justify;
 }
 
 /* Ordered list stils*/
@@ -92,13 +90,13 @@ ol {
 ol > li {
   display: table;
   counter-increment: item;
-  margin-bottom: 0.6em;
+  margin-bottom: 0.8em;
 }
 
 ol > li:before {
   content: counters(item, ".") ". ";
   display: table-cell;
-  padding-right: 0.9em;    
+  padding-right: 1.1em;
 }
 
 li ol > li {
@@ -110,32 +108,34 @@ li ol > li:before {
 }
 
 /*input lauka value teksta krāsa*/
-input, select, textarea{
-    color: grey;
+input,
+select,
+textarea {
+  color: grey;
 }
 
-/*teksta bloka izskatiņš*/
-aside {
+/* Tabulas formatejums*/
+table,
+th,
+td {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid;
+  border-color: #96d4d4;
+  border-collapse: collapse;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
   width: 30%;
-  padding-left: 15px;
-  margin-left: 15px;
-  float: right;
-  font-style: italic;
-  background-color: lightgray;
+  padding: 10px;
+  height: 500px; /* Should be removed. Only for demonstration */
 }
 
-#tabula {
-  background-color:gold;
-}
-
-#saturs{
-   background-color: lightblue;
-}
-
-#saturs img{
-  border-radius:38px; 
-}
-
-#tabula tr:nth-child(even){
-  background-color:pink;
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
