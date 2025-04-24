@@ -14,10 +14,10 @@
 
   <body>
     <header class="topnav">
-      <a href="/">Sākums</a>
-      <a href="par_mums.html">Par mums</a>
-      <a href="kontakti.html">Kontakti</a>
-      <a href="aptauja.html">Aptauja</a>
+      <a href="/" class="active">Sākums</a>
+      <a href="par_mums.html" onclick="atjaunotIetvaru(this); return false;">Par mums</a>
+      <a href="kontakti.html" onclick="atjaunotIetvaru(this); return false;">Kontakti</a>
+      <a href="aptauja.html" onclick="atjaunotIetvaru(this); return false;">Aptauja</a>
       <a href="pamati_sintakse.html">Pamati sintakse</a>
       <a href="#tabula">Reference uz tabulu</a>
     </header>
@@ -31,7 +31,7 @@
       <a href="#tabula">Reference uz tabulu</a><br />
     </aside>
 
-    <main>
+    <main id="lapas_saturs">
       <h1><center>Laipni lūgti lapā</center></h1>
 
       <section id="saturs">

@@ -1,53 +1,105 @@
-function aprekins(){
-let vards = document.getElementById("vards").value;
-let x = parseInt(document.getElementById('x').value); 
-let y = parseInt(document.getElementById("y").value);
-if (!vards.match(/^\S[a-zA-Zā-žĀ-Ž\s]*$/)){
- alert("Ievadiet vārdu ar burtiem!"); 
-  return;
+window.onload = function(){
+  //alert("Paziņojums");
+  var navLink = document.querySelectorAll(".topnav a");
+  console.log(navLink);
+  navLink.forEach(function(link) {
+    link.addEventListener("click", function(link){
+      navLink.forEach(function(link){
+        link.classList.remove('active');
+      });
+      this.classList.add('active');
+    });
+  });
 }
+
+function atjaunotIetvaru(which) {
+  document.getElementById("lapas_saturs").innerHTML =
+    "<" +
+    'object id="lapas" type="text/html" data="' +
+    which.href +
+    '"></' +
+    "object>";
+}
+
+let age=19;
+console.log(age);
+if(age<18){
+  console.log("Nepilngadīgs");
+}else if(age >=18 && age < 65){
+  console.log("Pilngadīgs");  
+}else {
+  console.log("Seniors");
+}
+
+for (let i=0; i<10; i=i+2){
+  if(i==4|| i==6){
+  console.log("i= četri");
+}
+  console.log(i);
+}
+
+let j=0;
+while (j<=10){
+  console.log("While rezultāts" + j);
+  j++;
+}
+
   
-  if(vards == "" || isNaN(x) ||isNaN(y)){
+  
+function aprekins() {
+  let vards = document.getElementById("vards").value;
+  let x = parseInt(document.getElementById("x").value);
+  let y = parseInt(document.getElementById("y").value);
+  if (!vards.match(/^\S[a-zA-Zā-žĀ-Ž\s]*$/)) {
+    alert("Ievadiet vārdu ar burtiem!");
+    return;
+  }
+
+  if (vards == "" || isNaN(x) || isNaN(y)) {
     console.log("Jāaizpilda visi lauki!");
     alert("Jāaizpilda visi lauki!");
-    return    // return vajadzīgs lai pārskata atkārtoti funkciju, citādāk turpinās rēķināt
+    return; // return vajadzīgs lai pārskata atkārtoti funkciju, citādāk turpinās rēķināt
   }
-  
-let z = x + y; 
-console.log("logaritma vērtība: " + z);
-document.getElementById("rezultats").innerText = vards + " tavs rezultāts " + x + " + " +  y + " = " + z;
+
+  let z = x + y;
+  console.log("logaritma vērtība: " + z);
+  document.getElementById("rezultats").innerText =
+    vards + " tavs rezultāts " + x + " + " + y + " = " + z;
 }
 
-function atnemsana(){
-let vards = document.getElementById("vards").value;
-  let x = parseInt(document.getElementById('x').value); 
-let y = parseInt(document.getElementById("y").value);
+function atnemsana() {
+  let vards = document.getElementById("vards").value;
+  let x = parseInt(document.getElementById("x").value);
+  let y = parseInt(document.getElementById("y").value);
 
-let z = x - y; 
-document.getElementById("rezultats").innerText = vards + " tavs rezultāts " + x + " - " +  y + " = " + z;
+  let z = x - y;
+  document.getElementById("rezultats").innerText =
+    vards + " tavs rezultāts " + x + " - " + y + " = " + z;
 }
 
-function reizinasana(){
-let vards = document.getElementById("vards").value;
-  let x = parseInt(document.getElementById('x').value); 
-let y = parseInt(document.getElementById("y").value);
+function reizinasana() {
+  let vards = document.getElementById("vards").value;
+  let x = parseInt(document.getElementById("x").value);
+  let y = parseInt(document.getElementById("y").value);
 
-let z = x * y; 
-document.getElementById("rezultats").innerText = vards + " tavs rezultāts " + x + " * " +  y + " = " + z;
+  let z = x * y;
+  document.getElementById("rezultats").innerText =
+    vards + " tavs rezultāts " + x + " * " + y + " = " + z;
 }
 
-function dalisana(){
-let vards = document.getElementById("vards").value;
-  let x = parseInt(document.getElementById('x').value); 
-let y = parseInt(document.getElementById("y").value);
+function dalisana() {
+  let vards = document.getElementById("vards").value;
+  let x = parseInt(document.getElementById("x").value);
+  let y = parseInt(document.getElementById("y").value);
 
-let z = x / y; 
-document.getElementById("rezultats").innerText = vards + " tavs rezultāts " + x + " / " +  y + " = " + z;
+  let z = x / y;
+  document.getElementById("rezultats").innerText =
+    vards + " tavs rezultāts " + x + " / " + y + " = " + z;
 }
 
-window.onload = function () {
-//  alert("Paziņojums");
-};
+//window.onload = function () {
+  //  alert("Paziņojums");
+//};
 
 /*function zimetuzcanva() {
   const canva = document.getElementById("zimejums"); //Iegūst kanvu pēc ID
