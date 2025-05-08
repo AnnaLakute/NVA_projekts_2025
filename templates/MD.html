@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Par mums</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.global/9854f0fd-919d-42f8-bc98-ee5fdb1ef95c/favicon.ico?v=1743781732383"
+    />
+    <link rel="stylesheet" href="{{url_for('static',filename='stils.css')}}" />
+    <script src="{{url_for('static',filename='scripts.js')}}"></script>
+  </head>
+
+  <body>
+    <h1><center>Patstāvīgais darbs Nr.2.</center></h1>
+    <h2>HTML, CSS, JS</h2>
+    <div>
+      Izveidot konvertoru collu pārvēršanai centimetros (1 colla = 2,54
+      centimetri). Lai to veiktu:
+    </div>
+
+    <ul>
+      <li>HTML jāizveido:</li>
+      <ul>
+        <li>virsraksts;</li>
+        <li>paskaidrojoša teksta rindkopas;</li>
+        <li>
+          ievades elements, kurā var ievadīt garuma skaitlisko vērtību collās;
+        </li>
+        <li>
+          poga, kuru piespiežot izpildīsies skripts, kas veiks pārveidošanu;
+        </li>
+        <li>rindkopa rezultāta izvadīšanai;</li>
+      </ul>
+      <li>
+        JavaScript jāizveido funkcija, kā atbildes reakcija notikumam
+        «piespiesta poga», kas veic šādas darbības:
+      </li>
+      <ul>
+        <li>nolasa tekstlodziņa vērtību;</li>
+        <li>aprēķina izvadāmo vērtību;</li>
+        <li>vērtību piešķir tīmekļa lapas elementam «rindkopa».</li>
+      </ul>
+      <li>Padziļināti:</li>
+      Pielikt pogu lejupielādēt un tai pieslēgt funkciju lejupielade(), kas dota
+      paraugā un rezultātu saglabāt failā.
+    </ul>
+
+    <section id="md2">
+      <h1>Konvertors</h1>
+      Pārveido no collām uz centimetriem.
+      <br><br>
+      <section id="collas">
+        <label for="collas">Ievadiet vērtību collās:<space> </space><br /><br>
+          <input type="number" id="cl" />
+        </label>
+        <br /><br />
+      </section>
+      <button onclick="collas()">Pārveidot</button>
+
+     <br><br>
+      Centimetros tas ir :<br>
+      <p id="rezultats2"></p>
+      <button onclick="lejuplade()">Lejuplādet rezultātu</button>
+      <br><br>
+    </section>
+
+    <h1></h1>
+  </body>
+</html>
