@@ -8,26 +8,27 @@
       type="image/x-icon"
       href="https://cdn.glitch.global/9854f0fd-919d-42f8-bc98-ee5fdb1ef95c/favicon.ico?v=1743781732383"
     />
-    <link rel="stylesheet" href="stils.css" />
-    <script src="scripts.js"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='stils.css')}}" />
+    <script src="{{url_for('static',filename='scripts.js')}}"></script>
   </head>
 
   <body>
     <header class="topnav">
       <a href="/" class="active">Sākums</a>
-      <a href="par_mums.html" onclick="atjaunotIetvaru(this); return false;">Par mums</a>
-      <a href="kontakti.html" onclick="atjaunotIetvaru(this); return false;">Kontakti</a>
-      <a href="aptauja.html" onclick="atjaunotIetvaru(this); return false;">Aptauja</a>
-      <a href="pamati_sintakse.html">Pamati sintakse</a>
+      <a href="par_mums" onclick="atjaunotIetvaru(this); return false;">Par mums</a>
+      <a href="kontakti" onclick="atjaunotIetvaru(this); return false;">Kontakti</a>
+      <a href="aptauja" onclick="atjaunotIetvaru(this); return false;">Aptauja</a>
+      <a href="pamati_sintakse" onclick="atjaunotIetvaru(this); return false;">Pamati sintakse</a><!--"pamati_sintakse.html"-->
       <a href="#tabula">Reference uz tabulu</a>
+      <a href="MD" onclick="atjaunotIetvaru(this); return false;">Patstāvīgais darbs</a>
     </header>
 
     <aside class="sidebar">
       <a href="/">Sākums</a><br />
-      <a href="par_mums.html">Par mums</a><br />
-      <a href="kontakti.html">Kontakti</a><br />
-      <a href="aptauja.html">Aptauja</a><br />
-      <a href="pamati_sintakse.html">Pamati sintakse</a><br />
+      <a href="par_mums.html" onclick="atjaunotIetvaru(this); return false;">Par mums</a><br />
+      <a href="kontakti.html" onclick="atjaunotIetvaru(this); return false;">Kontakti</a><br />
+      <a href="aptauja.html" onclick="atjaunotIetvaru(this); return false;">Aptauja</a><br />
+      <a href="pamati_sintakse" onclick="atjaunotIetvaru(this); return false;">Pamati sintakse</a><br /> <!--"pamati_sintakse.html"-->
       <a href="#tabula">Reference uz tabulu</a><br />
     </aside>
 

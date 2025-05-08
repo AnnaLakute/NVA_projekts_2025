@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mans pirmais HTML dokuments</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.global/9854f0fd-919d-42f8-bc98-ee5fdb1ef95c/favicon.ico?v=1743781732383"
+    />
+    <link rel="stylesheet" href="{{url_for('static',filename='stils.css')}}" />
+    <script src="{{url_for('static',filename='scripts.js')}}"></script>
+  </head>
+
+  <body>
+  
+    <h1>
+      Pamati sintakse
+    </h1>
+    
+    <nav>
+    <ul>
+      <li><a href="/sveiciens">Sveika pasaule!</a></li>
+      <li><a href="/mainigie">Mainīgie</a></li>
+      <li><a href="/datu_tipi">Datu tipi</a></li>
+      <li><a href="/operatori">Operatori</a></li>
+      <li><a href="/kontroles_strukturas">Kontroles struktūras</a></li>
+      <li><a href="/funkcijas">Funkcijas</a></li>
+      <li><a href="/ievade_izvade">Ievade un izvade</a></li>
+      <li><a href="/failu_apstrade">Failu apstrāde</a></li>
+      <li><a href="/oop">Object oriented programming</a></li>
+      <li><a href="/moduli">Moduļi</a></li>
+      <li><a href="/joks">Joks</a></li>
+      <li><a href="/csv2">CSV datu apstrāde</a></li>
+      
+      </ul>
+    
+    </nav>
+    {%block content%}{%endblock%}
+  </body>
+</html>
