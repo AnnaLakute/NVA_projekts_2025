@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, request
 import requests
+import csv
 
 app = Flask(__name__)
 
@@ -14,10 +15,6 @@ def par_mums():
 @app.route('/MD')
 def MD():
   return render_template("MD.html")
-
-@app.route('/aptauja')
-def aptauja():
-  return render_template("aptauja.html")
 
 @app.route('/kontakti')
 def kontakti():
@@ -45,12 +42,12 @@ def mainigie():
 @app.route('/datu_tipi')
 def datu_tipi():
   teksts = "Sveicieni! Šis ir teksts"
-  skaitis = 100
+  skaitlis = 100
   decimals = 10.5
   saraksts = ["vards", 2, 3, 4, 5] 
   mans_dict = {"vards": "Anna", "vecums":20}
   mans_kopa = {1,2,3,4,5}
-  return render_template("datu_tipi.html")
+  return render_template("datu_tipi.html", teksts=teksts, skaitlis=skaitlis, decimals=decimals, saraksts=saraksts, mans_dict=mans_dict, mans_kopa=mans_kopa)
 
 
 @app.route('/operatori')
@@ -102,6 +99,63 @@ def ievade_izvade():
     vards=request.form['vards']
     return render_template("ievade_izvade.html", vards=vards)
   return render_template("ievade_izvade.html", vards=None)
+  
+@app.route('/failu_apstrade')
+def failu_apstrade(): 
+  saturs = ""
+  try: 
+    with open('piemers.txt', 'r') as fails:
+      saturs = fails.read()
+  except IOError:
+      saturs = "Fails nav atrasts!"
+  return render_template("failu_apstrade.html", saturs=saturs)
+
+@app.route('/oop')
+def oop(): 
+  class Person:
+    def __init__ (self, vards, vecums):
+      self.vards= vards
+      self.vecums = vecums
+    def sveiciens(self):
+      return "Sveiki, mani sauc " + self.vards + " un mans vecums ir " + self.vecums + " gadi."
+  
+  persona = Person("Jānis", "30")
+  sveiciens = persona.sveiciens()   
+  
+  return render_template("oop.html", sveiciens = sveiciens)
+  
+@app.route('/moduli')
+def moduli():   
+  import math
+  sqrt_rezultats = math.sqrt(16)
+  print(sqrt_rezultats)
+  pow_rezultats = math.pow(4,2)
+  print(pow_rezultats)
+  
+  return render_template("moduli.html",sqrt_rezultats=sqrt_rezultats,pow_rezultats=pow_rezultats)
+  
+@app.route('/joks')
+def joks():   
+  url = 'http://api.chucknorris.io/jokes/random'
+  atbilde = requests.get(url)
+  print(atbilde)
+  dati=atbilde.json()
+  print(dati)
+  print(dati['value'])
+  return render_template("joks.html", joks=dati['value'], adrese=dati['url'], avatars= dati['icon_url'])
+  
+@app.route('/csv2')
+def csv2():  
+  with open("dati.csv", mode='r', encoding="utf-8") as fails:
+    csv_lasitajs=csv.reader(fails)
+    dati=list(csv_lasitajs)
+    print(csv_lasitajs)
+  return render_template('csv2.html', dati = dati[1])
+  
+@app.route('/aptauja')
+def aptauja():   
+  return render_template('aptauja.html')
+  
   
 if __name__=="__main__":
   app.run(debug=True)
