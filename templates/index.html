@@ -46,12 +46,13 @@
 
       <aside>
         <p class="center">
-          Ievadiet pieslēgšanās informāciju<br /><br />
-          Lietotājs<input type="text" /><br /><br />
-          Parole <input type="password" /> <br /><br />
+           <form action="{{url_for('pieteikties')}}" method="POST">
+          Ievadiet pieslēgšanās informāciju<br /><br>            <label for="login">Lietotājvārds</label>  
+             <input type="text" id="login" name="login" required /><br /><br />
+    <label for="parole">Parole</label>    <input type="password" id="parole" name="parole" required /><br /><br />
           <input type="submit" value="Iesniegt" /> <br />
-        </p>
-      </aside>
+        </form></p>
+              </aside>
 
       <section id="raksts">
         <h2>What is Lorem Ipsum?</h2>

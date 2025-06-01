@@ -1,0 +1,15 @@
+{% extends "MD.html" %}
+{% block content %}
+
+<h1>Ievade un izvade</h1>
+{% if summa is not none%}
+<form method="POST">
+  <input type="number" name="skaitlis1" placeholder="ievadiet skaitli" value="{{ skaitlis1 if skaitlis1 is not none else '' }}">
+  <input type="number" name="skaitlis2" placeholder="ievadiet skaitli" value="{{ skaitlis2 if skaitlis2 is not none else '' }}">
+  <input type="submit" value="iesniegt">
+</form>
+{% else %}
+  <p>Skaitļu {{ skaitlis1 }} un {{ skaitlis2 }} summa ir = {{ summa }}</p>
+{% endif %}
+
+{% endblock %}

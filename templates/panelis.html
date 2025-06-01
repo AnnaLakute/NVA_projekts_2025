@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Par mums</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.global/9854f0fd-919d-42f8-bc98-ee5fdb1ef95c/favicon.ico?v=1743781732383"
+    />
+    <link rel="stylesheet" href="{{url_for('static',filename='stils.css')}}" />
+    <script src="{{url_for('static',filename='scripts.js')}}"></script>
+  </head>
+  <body>
+    <h1>Administrācijas panelis</h1>
+    <a href="{{url_for('izlogoties')}}">Iziet</a>
+
+    <h2>Respondentu atbildes</h2>
+    <a href="/aptauja">Atpakaļ</a>
+    <table boarder="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Vārds</th>
+          <th>Dzimums</th>
+          <th>Hobijs</th>
+          <th>Darbība</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for lietotajs in lietotaji%}
+        <tr>
+          <td>{{lietotajs[0]}}</td>
+          <td>{{lietotajs[1]}}</td>
+          <td>{{lietotajs[2]}}</td>
+          <td>{{lietotajs[3]}}</td>
+          <td>
+          <a href="{{url_for('dzest_lietotaju', id=lietotajs[0])}}" class="btn btn-danger btn-sm">Dzēst</a>
+          </td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </body>
+</html>

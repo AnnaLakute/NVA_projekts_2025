@@ -1,14 +1,28 @@
-
 <h1><center>Aptaujas</center></h1>
 
-<form action="{{url_for}}" method="post">
+<form action="{{url_for('iesniegt')}}" method="post">
   <label for="vards">Vārds</label>
   <input type="text" id="vards" name="vards" required />
   <br /><br />
-  <label>Dzimums</label>
-  <input type="radio" id="virietis" name="dzimums" value="virietis" />
-  <input type="radio" id="sieviete" name="dzimums" value="sieviete" />
-  
+  <label>Dzimums</label> <br>
+  <input type="radio" id="virietis" name="dzimums" value="vīrietis" /><label for="virietis">Vīrietis</label><br>
+  <input type="radio" id="sieviete" name="dzimums" value="sieviete" /><label for="sieviete">Sieviete</label><br>
+  <input type="radio" id="cits" name="dzimums" value="Cits" /><label for="cits">Cits</label><br>
+  <br /><br />
+  <label>Hobijs</label>
+  <div>
+    (var sniegt vairākas atbildes)
+  </div><br>
+  <input type="checkbox" id="hobijs1" name="hobiji" value="Lasīšana" />
+  <label for="hobijs1">Lasīšana</label><br>
+  <input type="checkbox" id="hobijs2" name="hobiji" value="Ceļošana" />
+  <label for="hobijs2">Ceļošana</label><br>
+  <input type="checkbox" id="hobijs3" name="hobiji" value="Ēst gatavošana" />
+  <label for="hobijs3">Ēst gatavošana</label><br>
+  <input type="checkbox" id="hobijs4" name="hobiji" value="Sports" />
+  <label for="hobijs4">Sports</label><br>
+  <input type="checkbox" id="hobijs5" name="hobiji" value="Mūzika" />
+  <label for="hobijs5">Mūzika</label><br>
+  <br /><br />
+  <button type="submit">Iesniegt</button>
 </form>
-
-
