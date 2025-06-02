@@ -1,6 +1,43 @@
-{%extends "pamati_sintakse.html"%} {%block content%}
+{% extends "pamati_sintakse.html" %} {% block content %}
 <h1>CSV imports</h1>
-<pre>
-CSV dati = {{dati}}
-</pre>
-{%endblock%}
+
+<p><strong>CSV dati:</strong> {{ dati }}</p>
+
+<h2>Esošie dati</h2>
+<form action="{{url_for('pievienot')}}" method="POST">
+  <label for="vards"> Vārds</label>
+  <input type="text" id="vards" name="vards" />
+  <label for="uzvards"> Uzvārds</label>
+  <input type="text" id="uzvards" name="uzvards" />
+  <label for="vecums"> Vecums</label>
+  <input type="text" id="vecums" name="vecums" />
+  <button type="submit">Pievienot</button>
+</form>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Vārds</th>
+      <th>Uzvārds</th>
+      <th>Vecums</th>
+      <th>Darbība</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for rinda in dati %}
+    <tr>
+      <td>{{ rinda[0] }}</td>
+      <td>{{ rinda[1] }}</td>
+      <td>{{ rinda[2] }}</td>
+      <td>
+        <a
+          href="{{ url_for('dzest_rindu', vards=rinda[0]) }}"
+          class="btn btn-danger btn-sm"
+        >
+          Dzēst
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

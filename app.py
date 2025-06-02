@@ -1,9 +1,44 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, session, redirect
 import requests
 import csv
+import os
+import sqlite3
+import json
+
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
+app.secret_key = "manaatslega"
+
+def init_db():
+  conn=sqlite3.connect('DB_NVA.db')
+  cursor = conn.cursor()
+  cursor.execute('''
+    CREATE TABLE IF NOT EXISTS lietotaji (
+      "id" INTEGER UNIQUE,
+      "vards" TEXT NOT NULL,
+      "dzimums" TEXT NOT NULL,
+      "hobiji" TEXT NOT NULL,
+      PRIMARY KEY("id" AUTOINCREMENT)
+    )
+  ''')
+  cursor.execute('''
+    CREATE TABLE IF NOT EXISTS ADMIN (
+      "id" INTEGER UNIQUE,
+      "login" TEXT NOT NULL,
+      "password" TEXT NOT NULL,
+      PRIMARY KEY("id" AUTOINCREMENT)
+     )
+  '''  )
+  cursor.execute('SELECT * FROM ADMIN WHERE login = ?',('admin',))
+  if not cursor.fetchone():
+    cursor.execute('INSERT INTO ADMIN (login, password) VALUES (?,?)', ('admin',generate_password_hash('admin')))
+  conn.commit()
+  conn.close()
+  
+init_db()  
+  
 @app.route('/')
 def home():
   return render_template("index.html")
@@ -145,17 +180,174 @@ def joks():
   return render_template("joks.html", joks=dati['value'], adrese=dati['url'], avatars= dati['icon_url'])
   
 @app.route('/csv2')
-def csv2():  
-  with open("dati.csv", mode='r', encoding="utf-8") as fails:
-    csv_lasitajs=csv.reader(fails)
-    dati=list(csv_lasitajs)
-    print(csv_lasitajs)
-  return render_template('csv2.html', dati = dati[1])
+def csv2():
+  try:
+    with open("dati.csv", mode='r', encoding="utf-8") as fails:
+      csv_lasitajs=csv.reader(fails)
+      dati=list(csv_lasitajs)
+      print(csv_lasitajs)
+    return render_template('csv2.html', dati = dati)
+  except FileNotFoundError:
+    with open('dati.csv', mode='w', encoding="utf-8", newline='') as fails:
+      fails.write("Vārds, Uzvārds, Vecums\n")
+      print("Fails tika izveidots")
+    return render_template('kluda.html', zinojums = "Fails dati.csv nav atrasts!")
   
+ 
 @app.route('/aptauja')
 def aptauja():   
   return render_template('aptauja.html')
+
+@app.route('/iesniegt', methods=['GET','POST'])
+def iesniegt():
+    if request.method=='POST':
+      vards=request.form['vards']
+      dzimums = request.form['dzimums']
+      hobiji=request.form.getlist('hobiji')
+      hobiji_str=', '.join(hobiji)
+      print(vards)
+      print(dzimums)
+      print(hobiji)
+      print(hobiji_str)
+      
+      conn=sqlite3.connect('DB_NVA.db')
+      cursor = conn.cursor()
+      cursor.execute('INSERT INTO lietotaji (vards, dzimums, hobiji) VALUES (?,?,?)',(vards, dzimums, hobiji_str))
+      conn.commit()
+      conn.close()
+      
+    return render_template('paldies.html')
   
   
+  
+@app.route('/MD3', methods=['GET','POST'])
+def MD3():
+  summa = None
+  skaitlis1 = skaitlis2 = None
+  if request.method =='POST':
+    skaitlis1=int(request.form.get('skaitlis1', 0))
+    skaitlis2=int(request.form.get('skaitlis2', 0))
+    summa = skaitlis1 + skaitlis2
+    print(summa)
+    return render_template("MD3.html", skaitlis1=skaitlis1, skaitlis2=skaitlis2, summa=summa)
+  return render_template("MD3.html")
+  
+@app.route('/pieteikties', methods=['GET', 'POST'])
+def pieteikties():
+  if request.method == 'POST':
+      login=request.form['login']
+      parole = request.form['parole']
+  
+      print(login)
+      print(parole)
+      
+      conn=sqlite3.connect('DB_NVA.db')
+      cursor=conn.cursor()
+      cursor.execute('SELECT * FROM ADMIN WHERE login = ?', (login,))
+      admin=cursor.fetchone()
+      
+      conn.close
+      
+      if admin and check_password_hash(admin[2],parole):
+        session['login']=login
+        return redirect("panelis")
+      
+  return render_template("pieteikties.html")
+
+@app.route('/panelis')
+def panelis():
+  if 'login' not in session:
+    return redirect(url_for('pieteikties'))
+  conn = sqlite3.connect('DB_NVA.db')
+  cursor = conn.cursor()
+  cursor.execute('SELECT * FROM lietotaji')
+  lietotaji=cursor.fetchall()
+  print(lietotaji)
+  return render_template('panelis.html', lietotaji=lietotaji)
+
+@app.route('/izlogoties')
+def izlogoties():
+  session.pop('login',None)
+  return render_template('index.html')
+
+@app.route('/dzest_db/<int:id>')
+def dzest_lietotaju(id):
+  if 'login' not in session:
+    return redirect(url_for('pieteikties'))
+  conn = sqlite3.connect('DB_NVA.db')
+  cursor=conn.cursor()
+  cursor.execute('DELETE FROM lietotaji WHERE id=?',(id,))
+  conn.commit()
+  conn.close()
+  
+  return redirect(url_for('panelis'))
+  
+@app.route('/dzest_csv/<string:vards>')
+def dzest_rindu(vards):
+    jauni_dati = []
+    print("Datu tips jauni_dati")
+    print(type(jauni_dati))
+
+    with open('dati.csv', newline='', encoding='utf-8') as csvfails:
+        lasitajs = csv.reader(csvfails)
+        print("Rezultāti no CSV datu struktūrā")
+        print(lasitajs)
+        for dati in lasitajs:
+            if dati != vards:
+              jauni_dati.append(dati)
+
+    print("Jaunie dati: ")
+    print(jauni_dati)
+
+    with open('dati.csv', mode='w', newline='', encoding="utf-8") as csvfails:
+        rakstitajs = csv.writer(csvfails)
+        rakstitajs.writerows(jauni_dati)
+
+    return redirect(url_for('csv2'))  
+  
+#def izmeginajums():
+ #   with open('dati.csv', mode='r', encoding="utf-8") as file:
+  #    reader = csv.DictReader(file)
+   #   print(type(reader))
+    #  dati = [row for row in reader ]
+  
+     # print(dati)
+      #print(type(dati))
+      
+   # with open('dati.json', mode='r', encoding="utf-8") as file:
+    #  dati = json.load(file)
+    #print(dati)
+    
+    #print("Visi dati: ")
+    #for row in dati:
+        #print(row['Vards'], row['Uzvards'], row['Cepums'], row['Dzimums'])
+  
+def ierakstit_csv(faila_nosaukums, dati):
+  fails='dati.csv'
+  fails_eksiste=os.path.isfile(fails)
+  if not fails_eksiste:
+    csv_rakstitajs.writerow(['Vārds', 'Uzvārds', 'Vecums'])
+  with open(faila_nosaukums, mode='a', encoding="utf-8") as fails:
+    csv_rakstitajs=csv.writer(fails)
+    csv_rakstitajs.writerow(dati)
+       
+  
+@app.route('/pievienot', methods=['POST'])
+def pievienot():
+  vards=request.form['vards']
+  uzvards=request.form['uzvards']
+  vecums=request.form['vecums']
+  print(vards)
+  ierakstit_csv('dati.csv', [vards,uzvards,vecums])
+  return redirect(url_for('csv2'))
+  
+#@app.errorhandler(404)
+#def internal_server_error(e):
+    #note that we ser the 500 status explicitly
+#    return render_template('404.html'), 404
+    
+   
+    
 if __name__=="__main__":
+ # izmeginajums()
   app.run(debug=True)
